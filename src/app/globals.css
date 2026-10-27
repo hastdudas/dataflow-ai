@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-paper text-ink antialiased;
+    font-feature-settings: 'palt' 1;
+  }
+
+  ::selection {
+    @apply bg-ledger text-white;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-ledger ring-offset-2 ring-offset-paper;
+  }
+}
+
+@layer components {
+  /* Small caps mono label used for section eyebrows and data headers. */
+  .eyebrow {
+    @apply font-mono text-[11px] uppercase tracking-[0.18em] text-ledger;
+  }
+
+  .rule {
+    @apply border-t border-paper-rule;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded px-5 py-3
+           text-sm font-bold transition-colors disabled:cursor-not-allowed
+           disabled:opacity-50;
+  }
+
+  .btn-primary {
+    @apply btn bg-ledger text-white hover:bg-ledger-deep;
+  }
+
+  .btn-secondary {
+    @apply btn border border-ink/15 bg-white text-ink hover:border-ledger hover:text-ledger;
+  }
+
+  .btn-quiet {
+    @apply btn px-3 py-2 text-ink-soft hover:text-ledger;
+  }
+
+  .card {
+    @apply rounded border border-paper-rule bg-paper-card;
+  }
+
+  /* The ledger strip: green-bar accounting paper. */
+  .ledger-row:nth-child(odd) {
+    @apply bg-ledger-band;
+  }
+
+  .prose-doc {
+    @apply text-[15px] leading-[1.9] text-ink-soft;
+  }
+
+  .prose-doc h2 {
+    @apply mb-3 mt-10 text-lg font-bold text-ink;
+  }
+
+  .prose-doc h3 {
+    @apply mb-2 mt-6 text-base font-bold text-ink;
+  }
+
+  .prose-doc p {
+    @apply mb-4;
+  }
+
+  .prose-doc ul {
+    @apply mb-4 list-disc space-y-1 pl-6;
+  }
+
+  .prose-doc ol {
+    @apply mb-4 list-decimal space-y-1 pl-6;
+  }
+
+  .prose-doc a {
+    @apply text-ledger underline underline-offset-2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

@@ -1,0 +1,2 @@
+robots.txt と sitemap.xml は src/app/robots.ts と src/app/sitemap.ts から
+自動生成されます。このディレクトリに静的ファイルを置く必要はありません。
