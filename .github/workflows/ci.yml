@@ -17,10 +17,18 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: npm
+          # No `cache: npm` yet: caching requires a lockfile, and this repo
+          # has none until someone runs `npm install` locally and commits
+          # package-lock.json. Once that lands, add `cache: npm` back.
 
       - name: Install dependencies
-        run: npm ci || npm install
+        # `npm ci` needs a lockfile; fall back until one is committed.
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
 
       - name: Lint
         run: npm run lint
